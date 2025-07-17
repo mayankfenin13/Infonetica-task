@@ -1,0 +1,74 @@
+{
+  "id": "simple_approval",
+  "name": "Simple Approval Workflow",
+  "description": "A basic approval workflow with draft, review, and approved states",
+  "states": [
+    {
+      "id": "draft",
+      "name": "Draft",
+      "is_initial": true,
+      "is_final": false,
+      "enabled": true,
+      "description": "Initial draft state"
+    },
+    {
+      "id": "review",
+      "name": "Under Review",
+      "is_initial": false,
+      "is_final": false,
+      "enabled": true,
+      "description": "Document is being reviewed"
+    },
+    {
+      "id": "approved",
+      "name": "Approved",
+      "is_initial": false,
+      "is_final": true,
+      "enabled": true,
+      "description": "Document has been approved"
+    },
+    {
+      "id": "rejected",
+      "name": "Rejected",
+      "is_initial": false,
+      "is_final": true,
+      "enabled": true,
+      "description": "Document has been rejected"
+    }
+  ],
+  "actions": [
+    {
+      "id": "submit_for_review",
+      "name": "Submit for Review",
+      "enabled": true,
+      "from_states": ["draft"],
+      "to_state": "review",
+      "description": "Submit document for review"
+    },
+    {
+      "id": "approve",
+      "name": "Approve",
+      "enabled": true,
+      "from_states": ["review"],
+      "to_state": "approved",
+      "description": "Approve the document"
+    },
+    {
+      "id": "reject",
+      "name": "Reject",
+      "enabled": true,
+      "from_states": ["review"],
+      "to_state": "rejected",
+      "description": "Reject the document"
+    },
+    {
+      "id": "revise",
+      "name": "Send Back for Revision",
+      "enabled": true,
+      "from_states": ["review"],
+      "to_state": "draft",
+      "description": "Send document back to draft for revision"
+    }
+  ]
+}
+
